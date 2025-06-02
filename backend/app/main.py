@@ -20,8 +20,15 @@ class CORSMiddlewareManual(BaseHTTPMiddleware):
     async def dispatch(self, request: Request, call_next):
         response = await call_next(request)
         origin = request.headers.get("origin")
+        
         # Add CORS headers to every response, including error responses
-        response.headers["Access-Control-Allow-Origin"] = origin
+        # Check if origin exists and is in allowed_origins before setting the header
+        if origin and origin in self.allowed_origins:
+            response.headers["Access-Control-Allow-Origin"] = origin
+        else:
+            # Default to a safe value or first allowed origin if no matching origin found
+            response.headers["Access-Control-Allow-Origin"] = next(iter(self.allowed_origins))
+            
         response.headers["Access-Control-Allow-Credentials"] = "true"
         response.headers["Access-Control-Allow-Methods"] = "*"
         response.headers["Access-Control-Allow-Headers"] = "*"
