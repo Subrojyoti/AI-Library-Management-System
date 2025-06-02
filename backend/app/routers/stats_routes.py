@@ -3,10 +3,10 @@ from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy.future import select
 from sqlalchemy import func, text
 
-from backend.app.db.session import get_db
-from backend.app.models.book import Book
-from backend.app.models.student import Student
-from backend.app.models.book_issue import BookIssue
+from app.db.session import get_db
+from app.models.book import Book
+from app.models.student import Student
+from app.models.book_issue import BookIssue
 
 router = APIRouter()
 

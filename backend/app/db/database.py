@@ -1,13 +1,13 @@
 # backend/app/db/database.py
 from sqlalchemy.ext.asyncio import create_async_engine, AsyncSession
 from sqlalchemy.orm import sessionmaker
-from backend.app.core.config import settings
+from app.core.config import settings
 
 # Import the db package to ensure all models are registered with Base.metadata
 # This replaces the previous commented-out direct model imports.
 # import app.db
 # from app.db.base_class import Base # Base is needed for Base.metadata.create_all
-from backend.app.db import Base
+from app.db import Base
 
 # Commented out model imports are no longer needed here as app.db handles it
 # # import app.models.book # noqa

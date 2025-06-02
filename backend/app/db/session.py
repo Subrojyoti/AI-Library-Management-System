@@ -1,6 +1,6 @@
 from sqlalchemy.ext.asyncio import AsyncSession
 # Import AsyncSessionLocal from database.py which is the source of truth
-from backend.app.db.database import AsyncSessionLocal
+from app.db.database import AsyncSessionLocal
 
 # Remove local engine and AsyncSessionLocal definitions as they are in database.py
 # engine: AsyncEngine | None = None

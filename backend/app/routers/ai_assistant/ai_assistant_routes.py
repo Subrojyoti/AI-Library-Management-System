@@ -7,9 +7,9 @@ import logging
 import uuid
 import json
 
-from backend.app.dependencies import get_db_session
-from backend.app.services.ai_assistant_service import get_ai_assistant_response, process_streaming_ai_response
-from backend.app.schemas.ai_assistant import ChatRequest, ChatResponse
+from app.dependencies import get_db_session
+from app.services.ai_assistant_service import get_ai_assistant_response, process_streaming_ai_response
+from app.schemas.ai_assistant import ChatRequest, ChatResponse
 
 logger = logging.getLogger(__name__)
 
