@@ -16,11 +16,12 @@ from app.core.config import settings
 
 # Custom middleware to add CORS headers to every response manually
 class CORSMiddlewareManual(BaseHTTPMiddleware):
+    allowed_origins = {"http://localhost:5173", "https://ai-library-management-system.vercel.app"}
     async def dispatch(self, request: Request, call_next):
         response = await call_next(request)
-        
+        origin = request.headers.get("origin")
         # Add CORS headers to every response, including error responses
-        response.headers["Access-Control-Allow-Origin"] = "http://localhost:5173"
+        response.headers["Access-Control-Allow-Origin"] = origin
         response.headers["Access-Control-Allow-Credentials"] = "true"
         response.headers["Access-Control-Allow-Methods"] = "*"
         response.headers["Access-Control-Allow-Headers"] = "*"
