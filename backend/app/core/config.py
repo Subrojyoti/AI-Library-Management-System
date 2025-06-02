@@ -80,22 +80,22 @@ settings = Settings()
 
 # --- BEGIN CRITICAL DEBUG CHECK ---
 # We need to import sys here if it's not already imported for sys.path
-import sys 
-if not PROJECT_ROOT_ENV_FILE.exists(): # Ensure this line is active
-    raise FileNotFoundError( # Ensure this block is active
-        f"CRITICAL DEBUG: .env file NOT FOUND at {PROJECT_ROOT_ENV_FILE}. "
-        f"Current working directory: {os.getcwd()}" # Added os.getcwd()
-    )
+# import sys 
+# if not PROJECT_ROOT_ENV_FILE.exists(): # Ensure this line is active
+#     raise FileNotFoundError( # Ensure this block is active
+#         f"CRITICAL DEBUG: .env file NOT FOUND at {PROJECT_ROOT_ENV_FILE}. "
+#         f"Current working directory: {os.getcwd()}" # Added os.getcwd()
+#     )
 
 # Check if POSTGRES_USER is still the Pydantic default
-if settings.POSTGRES_USER == "user": # Default Pydantic value
-    # This log will now be visible thanks to pytest.ini log_cli settings
-    logger.error(
-        f"CRITICAL LOG: settings.POSTGRES_USER is still the default ('{settings.POSTGRES_USER}'). "
-        f".env file at {PROJECT_ROOT_ENV_FILE} (exists: {PROJECT_ROOT_ENV_FILE.exists()}) was likely NOT LOADED by Pydantic. "
-        f"PYTHONPATH: {os.environ.get('PYTHONPATH', 'Not set')}, "
-        f"sys.path: {sys.path}"
-    )
+# if settings.POSTGRES_USER == "user": # Default Pydantic value
+#     # This log will now be visible thanks to pytest.ini log_cli settings
+#     logger.error(
+#         f"CRITICAL LOG: settings.POSTGRES_USER is still the default ('{settings.POSTGRES_USER}'). "
+#         f".env file at {PROJECT_ROOT_ENV_FILE} (exists: {PROJECT_ROOT_ENV_FILE.exists()}) was likely NOT LOADED by Pydantic. "
+#         f"PYTHONPATH: {os.environ.get('PYTHONPATH', 'Not set')}, "
+#         f"sys.path: {sys.path}"
+#     )
     # Optionally, re-raise to halt tests if .env is critical and not loaded
     # raise ValueError("Halting tests: .env not loaded, POSTGRES_USER is default.") 
 # --- END CRITICAL DEBUG CHECK ---
