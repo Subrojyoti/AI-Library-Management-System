@@ -4,7 +4,15 @@ import axios from 'axios';
 // Determine the base URL for the API.
 // In development, this will point to your FastAPI backend (usually port 8000).
 // In production, this would be your deployed backend URL.
-const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:8000/api/v1';
+
+// Check if we're in a production environment (like Vercel)
+const isProduction = window.location.hostname !== 'localhost' && 
+                    window.location.hostname !== '127.0.0.1';
+
+// Use the Render backend URL in production, localhost in development
+const API_BASE_URL = isProduction 
+  ? 'https://ai-library-management-system.onrender.com/api/v1'
+  : 'http://localhost:8000/api/v1';
 
 const apiClient = axios.create({
   baseURL: API_BASE_URL,
