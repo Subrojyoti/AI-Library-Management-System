@@ -79,7 +79,7 @@ First create an account in [Mailjet](app.mailjet.com).
 Then, get the api and secret keys.
 - MAIL_USERNAME=your_api_key
 - MAIL_PASSWORD=your_secret_key
-- MAIL_FROM=workwithsubro@gmail.com
+- MAIL_FROM=your_registered_mail
 - MAIL_PORT=587
 - MAIL_SERVER=in-v3.mailjet.com
 - MAIL_FROM_NAME=Any Suitable Name
@@ -124,7 +124,7 @@ Currently, the AI assistant can understand and respond to questions related to:
     *   "Which department borrowed the most books"
 *   **Book Info**
     *   "Biology related books"
-    
+
 
 ### Context & State
 
