@@ -4,8 +4,8 @@ from sqlalchemy.exc import IntegrityError
 from sqlalchemy.sql import func
 from fastapi import HTTPException, status
 
-from backend.app.models.book import Book
-from backend.app.schemas.book import BookCreate, BookUpdate
+from app.models.book import Book
+from app.schemas.book import BookCreate, BookUpdate
 
 async def get_book_by_isbn(db: AsyncSession, isbn: str) -> Book | None:
     result = await db.execute(select(Book).filter(Book.isbn == isbn))

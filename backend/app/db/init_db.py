@@ -1,18 +1,18 @@
 from sqlalchemy.ext.asyncio import AsyncSession # Keep if used, but likely not in this file
 
 # Import the engine from the session management module
-from backend.app.db.session import engine # MODIFIED
+from app.db.session import engine # MODIFIED
 
 # Import the common Base for all models
-from backend.app.db.base_class import Base # MODIFIED
+from app.db.base_class import Base # MODIFIED
 
 # Import all model modules/classes to ensure they are registered with Base.metadata
 # These imports are crucial for Base.metadata.create_all to know about the tables if this script were used for setup.
-# from backend.app.models.book import Book # noqa (Temporarily commented out)
-# from backend.app.models.student import Student # noqa (Temporarily commented out)
-# from backend.app.models.issue import BookIssue # noqa (Temporarily commented out)
-# NOTE: Model registration is now handled by backend/app/db/__init__.py
-# So, explicit model imports here are not strictly necessary if backend.app.db has been imported.
+# from app.models.book import Book # noqa (Temporarily commented out)
+# from app.models.student import Student # noqa (Temporarily commented out)
+# from app.models.issue import BookIssue # noqa (Temporarily commented out)
+# NOTE: Model registration is now handled by app/db/__init__.py
+# So, explicit model imports here are not strictly necessary if app.db has been imported.
 
 async def create_database_tables():
     """Creates all database tables defined by SQLAlchemy models using the common Base."""

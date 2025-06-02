@@ -7,7 +7,7 @@ from typing import List, Dict, Any, Optional
 from datetime import date, datetime
 from jinja2 import Environment, FileSystemLoader
 
-from backend.app.core.config import settings
+from app.core.config import settings
 
 logger = logging.getLogger(__name__)
 

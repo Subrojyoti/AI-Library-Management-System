@@ -6,9 +6,9 @@ from .base_class import Base
 # Import all models here to ensure they are registered with Base.metadata
 # as soon as the 'app.db' package is imported.
 # This helps in centralizing model registration.
-from backend.app.models.book import Book # noqa
-from backend.app.models.student import Student # noqa
-from backend.app.models.book_issue import BookIssue # noqa
+from app.models.book import Book # noqa
+from app.models.student import Student # noqa
+from app.models.book_issue import BookIssue # noqa
 
 # You can also make engine and SessionLocal available through app.db
 # from .database import engine, AsyncSessionLocal, create_db_and_tables # Optional convenience

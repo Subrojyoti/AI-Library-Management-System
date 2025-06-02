@@ -1,15 +1,15 @@
 # backend/app/db/database.py
 from sqlalchemy.ext.asyncio import create_async_engine, AsyncSession
 from sqlalchemy.orm import sessionmaker
-from backend.app.core.config import settings
+from app.core.config import settings
 
 # Import the db package to ensure all models are registered with Base.metadata
 # This replaces the previous commented-out direct model imports.
-# import backend.app.db
+# import app.db
 # from app.db.base_class import Base # Base is needed for Base.metadata.create_all
-from backend.app.db import Base
+from app.db import Base
 
-# Commented out model imports are no longer needed here as backend.app.db handles it
+# Commented out model imports are no longer needed here as app.db handles it
 # # import app.models.book # noqa
 # import app.models.student # noqa
 # import app.models.issue # noqa
@@ -37,11 +37,11 @@ async def create_db_and_tables():
     """
     Creates all tables in the database.
     This function is typically called at application startup.
-    All SQLAlchemy models are now registered by importing `backend.app.db` above.
+    All SQLAlchemy models are now registered by importing `app.db` above.
     """
     # Base should be imported at the module level. No need to import here again.
     # from app.db.base_class import Base 
-    # from backend.app.db import Base # This is already available in module scope
+    # from app.db import Base # This is already available in module scope
     async with engine.begin() as conn:
         # await conn.run_sync(Base.metadata.drop_all) # Use with caution: drops all data!
         await conn.run_sync(Base.metadata.create_all)

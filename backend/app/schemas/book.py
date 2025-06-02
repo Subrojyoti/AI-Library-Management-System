@@ -2,7 +2,7 @@ from pydantic import BaseModel, constr, Field
 from datetime import datetime
 from typing import Optional
 
-from backend.app.models.common import CoreModel, TimestampModel # MODIFIED
+from app.models.common import CoreModel, TimestampModel # MODIFIED
 
 # 2.2.1. BookBase: Common fields
 class BookBase(CoreModel):
