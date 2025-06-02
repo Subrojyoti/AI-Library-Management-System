@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Due Soon Reminder</title>
+    <style>
+        body { font-family: Arial, sans-serif; line-height: 1.6; margin: 0; padding: 20px; background-color: #f4f4f4; color: #333; }
+        .container { max-width: 600px; margin: auto; background: #fff; padding: 20px; border-radius: 8px; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
+        h1 { color: #f0ad4e; }
+        p { margin-bottom: 10px; }
+        strong { color: #555; }
+        .footer { margin-top: 20px; text-align: center; font-size: 0.9em; color: #777; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Book Due Soon Reminder</h1>
+        <p>Dear {{ student_name }},</p>
+        <p>This is a friendly reminder that the following book is due soon:</p>
+        <p><strong>Title:</strong> {{ book_title }}<br>
+           <strong>ISBN:</strong> {{ book_isbn }}<br>
+           <strong>Due Date:</strong> {{ due_date }}</p>
+        <p>This book is due in <strong>{{ days_remaining }} day(s)</strong>, on {{ due_date }}.</p>
+        <p>Please remember to return it on time to avoid any overdue penalties.</p>
+        <p>If you have already returned this book, please disregard this email.</p>
+        <p>Thank you,</p>
+        <p>The Library Team</p>
+        <div class="footer">
+            <p>&copy; {{ "now"|date("Y") }} College Library. All rights reserved.</p>
+        </div>
+    </div>
+</body>
+</html> 
