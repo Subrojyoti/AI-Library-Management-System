@@ -5,7 +5,6 @@ import axios from 'axios';
 // In development, this will point to your FastAPI backend (usually port 8000).
 // In production, this would be your deployed backend URL.
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:8000/api/v1';
-
 const apiClient = axios.create({
   baseURL: API_BASE_URL,
   headers: {

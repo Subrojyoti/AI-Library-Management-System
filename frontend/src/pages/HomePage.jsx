@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import ResponsiveContainer from '../components/ResponsiveContainer';
-
+import apiClient from '../services/apiClient';
 function HomePage() {
   const [stats, setStats] = useState({
     total_books: 0,
@@ -15,20 +15,12 @@ function HomePage() {
     const fetchStats = async () => {
       try {
         // console.log('Fetching statistics from API...');
-        const response = await fetch('http://localhost:8000/api/v1/stats/collection');
+        const response = await apiClient.get('/stats/collection');
         // console.log('API response status:', response.status);
         
-        if (!response.ok) {
-          const errorText = await response.text();
-          console.error('Error response:', errorText);
-          throw new Error(`Failed to fetch statistics: ${response.status} ${errorText}`);
-        }
-        
-        const data = await response.json();
-        // console.log('Statistics data received:', data);
-        
+        // With axios, the data is directly available in response.data
         setStats({
-          ...data,
+          ...response.data,
           loading: false
         });
       } catch (error) {

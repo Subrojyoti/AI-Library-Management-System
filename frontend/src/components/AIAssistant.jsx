@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import axios from 'axios';
+import apiClient from '../services/apiClient';
 
 const AIAssistant = () => {
     const [question, setQuestion] = useState('');
@@ -12,7 +12,7 @@ const AIAssistant = () => {
         setLoading(true);
         setError(null);
         try {
-            const result = await axios.post('http://localhost:8000/api/v1/ai-assistant/webhook/', {
+            const result = await apiClient.post('/ai-assistant/webhook/', {
                 question,
                 original_question: question
             });
