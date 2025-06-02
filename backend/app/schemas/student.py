@@ -1,7 +1,7 @@
 from pydantic import BaseModel, EmailStr, Field, constr
 from typing import Optional
 
-from app.models.common import CoreModel, TimestampModel
+from backend.app.models.common import CoreModel, TimestampModel
 
 # 3.2.1. StudentBase
 class StudentBase(CoreModel):

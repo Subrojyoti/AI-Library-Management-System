@@ -4,8 +4,8 @@ from sqlalchemy.exc import IntegrityError
 from sqlalchemy.sql import func, or_
 from fastapi import HTTPException, status
 
-from app.models.student import Student
-from app.schemas.student import StudentCreate, StudentUpdate # StudentUpdate will be used later
+from backend.app.models.student import Student
+from backend.app.schemas.student import StudentCreate, StudentUpdate # StudentUpdate will be used later
 
 async def get_student_by_unique_fields(db: AsyncSession, roll_number: str | None = None, email: str | None = None, phone: str | None = None) -> Student | None:
     conditions = []

@@ -2,7 +2,7 @@ from sqlalchemy import String, Integer, UniqueConstraint, ForeignKey
 from sqlalchemy.orm import relationship, Mapped, mapped_column
 from typing import List, TYPE_CHECKING
 
-from app.db.base_class import Base
+from backend.app.db.base_class import Base
 from .common import TableModelMixin
 
 if TYPE_CHECKING:

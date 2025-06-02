@@ -4,15 +4,15 @@ from fastapi.responses import JSONResponse
 from contextlib import asynccontextmanager
 from starlette.middleware.base import BaseHTTPMiddleware
 
-from app.db.database import create_db_and_tables, engine, dispose_db_engine
-from app.routers.book_routes import router as books_router
-from app.routers.student_routes import router as students_router
-from app.routers.book_issue_routes import router as issues_router
-from app.routers.ai_assistant.ai_assistant_routes import router as ai_assistant_router
-from app.routers.health_check import router as health_router
-from app.routers.stats_routes import router as stats_router
-from app.core.scheduler import initialize_scheduler, scheduler
-from app.core.config import settings
+from backend.app.db.database import create_db_and_tables, engine, dispose_db_engine
+from backend.app.routers.book_routes import router as books_router
+from backend.app.routers.student_routes import router as students_router
+from backend.app.routers.book_issue_routes import router as issues_router
+from backend.app.routers.ai_assistant.ai_assistant_routes import router as ai_assistant_router
+from backend.app.routers.health_check import router as health_router
+from backend.app.routers.stats_routes import router as stats_router
+from backend.app.core.scheduler import initialize_scheduler, scheduler
+from backend.app.core.config import settings
 
 # Custom middleware to add CORS headers to every response manually
 class CORSMiddlewareManual(BaseHTTPMiddleware):

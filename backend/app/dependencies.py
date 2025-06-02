@@ -2,7 +2,7 @@ from typing import AsyncGenerator
 from sqlalchemy.ext.asyncio import AsyncSession
 
 # Import AsyncSessionLocal from database.py, which is the single source of truth for session creation
-from app.db.database import AsyncSessionLocal
+from backend.app.db.database import AsyncSessionLocal
 
 async def get_async_db_session() -> AsyncGenerator[AsyncSession, None]:
     """

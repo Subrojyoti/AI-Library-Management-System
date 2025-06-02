@@ -3,9 +3,9 @@ from sqlalchemy import func, select, text
 from datetime import datetime, timedelta, date as py_date
 import logging
 
-from app.models.book import Book
-from app.models.student import Student
-from app.models.book_issue import BookIssue
+from backend.app.models.book import Book
+from backend.app.models.student import Student
+from backend.app.models.book_issue import BookIssue
 
 logger = logging.getLogger(__name__)
 

@@ -35,7 +35,8 @@ This project is a backend system for managing books, students, and book insuranc
 4.  Install dependencies: `pip install -r requirements.txt`
 5.  Create a `.env` file in the `backend/` directory by copying `backend/.env.example`.
     **Crucially, update the `POSTGRES_PASSWORD` and other Aiven credentials if they differ from the example.**
-6.  Run the FastAPI application: `uvicorn app.main:app --reload`
+6. Navigate back `cd ..`
+6.  Run the FastAPI application: `uvicorn backend.app.main:app --reload`
 
 The API will be available at `http://localhost:8000`. Swagger docs at `http://localhost:8000/api/v1/docs`.
 

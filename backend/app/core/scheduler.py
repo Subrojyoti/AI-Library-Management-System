@@ -5,14 +5,14 @@ from apscheduler.executors.asyncio import AsyncIOExecutor
 from datetime import datetime, timezone
 from sqlalchemy.ext.asyncio import AsyncSession
 
-from app.core.config import settings
-from app.db.session import AsyncSessionLocal
-from app.services.email_service import (
+from backend.app.core.config import settings
+from backend.app.db.session import AsyncSessionLocal
+from backend.app.services.email_service import (
     send_overdue_reminder_email,
     send_due_soon_reminder_email,
     email_service_conf
 )
-from app.crud import crud_book_issue
+from backend.app.crud import crud_book_issue
 
 logger = logging.getLogger(__name__)
 

@@ -8,8 +8,8 @@ import uuid
 import re
 from sqlalchemy import select, func, or_, text
 
-from app.core.config import settings
-from app.schemas.ai_assistant_schemas import (
+from backend.app.core.config import settings
+from backend.app.schemas.ai_assistant_schemas import (
     SearchBooksParams,
     GetStudentDetailsParams,
     GetBookAvailabilityParams,
@@ -26,10 +26,10 @@ from app.schemas.ai_assistant_schemas import (
     GetDepartmentWithMostBorrowsParams,
     GetNewBooksAddedThisWeekParams
 )
-from app.models.book import Book
-from app.models.student import Student
-from app.models.book_issue import BookIssue as Issue
-from app.services.library_analytics_service import library_analytics_service
+from backend.app.models.book import Book
+from backend.app.models.student import Student
+from backend.app.models.book_issue import BookIssue as Issue
+from backend.app.services.library_analytics_service import library_analytics_service
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)

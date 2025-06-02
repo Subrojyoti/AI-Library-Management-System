@@ -3,7 +3,7 @@ from sqlalchemy.orm import relationship
 from sqlalchemy.sql import func
 import datetime
 
-from app.db.base_class import Base
+from backend.app.db.base_class import Base
 
 class BookIssue(Base):
     __tablename__ = "book_issues"

@@ -6,11 +6,11 @@ from datetime import datetime, timedelta, date, timezone
 from typing import List # For type hinting
 from sqlalchemy import func
 
-from app.models.book_issue import BookIssue
-from app.models.book import Book # For updating num_copies_available
-from app.models.student import Student # For checking student existence
-from app.schemas.issue import BookIssueCreate
-from app.crud import crud_book, crud_student # To get book/student by id
+from backend.app.models.book_issue import BookIssue
+from backend.app.models.book import Book # For updating num_copies_available
+from backend.app.models.student import Student # For checking student existence
+from backend.app.schemas.issue import BookIssueCreate
+from backend.app.crud import crud_book, crud_student # To get book/student by id
 
 DEFAULT_ISSUE_DAYS = 14 # Same as in schemas
 
