@@ -63,39 +63,3 @@ async def get_collection_statistics(db: AsyncSession = Depends(get_db)):
         "total_students": total_students,
         "currently_issued": currently_issued
     }
-
-@router.get("/debug")
-async def get_debug_info(db: AsyncSession = Depends(get_db)):
-    """Debug endpoint to check database tables directly."""
-    try:
-        # Try to get data directly from tables instead of checking table names
-        tables = ['books', 'students', 'book_issues']
-        
-        # Get sample data from each table
-        books_data = []
-        students_data = []
-        issues_data = []
-        
-        if 'books' in tables:
-            books_query = text("SELECT id, title, isbn, num_copies_total FROM books LIMIT 5")
-            books_result = await db.execute(books_query)
-            books_data = [dict(row._mapping) for row in books_result.fetchall()]
-        
-        if 'students' in tables:
-            students_query = text("SELECT id, name, roll_number FROM students LIMIT 5")
-            students_result = await db.execute(students_query)
-            students_data = [dict(row._mapping) for row in students_result.fetchall()]
-        
-        if 'book_issues' in tables:
-            issues_query = text("SELECT id, book_id, student_id, is_returned FROM book_issues LIMIT 5")
-            issues_result = await db.execute(issues_query)
-            issues_data = [dict(row._mapping) for row in issues_result.fetchall()]
-        
-        return {
-            "tables": tables,
-            "books_sample": books_data,
-            "students_sample": students_data,
-            "issues_sample": issues_data
-        }
-    except Exception as e:
-        return {"error": str(e)}

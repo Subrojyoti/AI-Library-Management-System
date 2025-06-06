@@ -53,41 +53,6 @@ async def ai_assistant_webhook(
         logger.error(f"Unexpected error in AI assistant webhook for query '{user_query}': {str(e)}", exc_info=True)
         raise HTTPException(status_code=500, detail=f"An unexpected internal error occurred: {str(e)}")
 
-@router.post("/streaming/", response_class=StreamingResponse)
-async def ai_assistant_streaming(
-    request: ChatRequest = Body(...),
-    db: AsyncSession = Depends(get_db_session)
-):
-    """
-    Streaming endpoint for the Conversational AI Agent.
-    
-    Accepts a natural language question and streams back the assistant's responses,
-    including potential tool calls and their results.
-    
-    - **question**: The user's question.
-    - **conversation_id**: (optional) An ID to maintain context across multiple turns.
-      If not provided, a new one will be generated.
-    """
-    conv_id = request.conversation_id or str(uuid.uuid4())
-    logger.info(f"Received streaming request for AI Agent. Conversation ID: {conv_id}, Question: \"{request.question[:100]}...\"")
-
-    async def sse_event_stream() -> AsyncGenerator[str, None]:
-        try:
-            async for response_item in process_streaming_ai_response(db, request.question, conv_id):
-                # Server-Sent Events format: data: json_payload\n\n
-                yield f"data: {response_item.model_dump_json(exclude_none=True)}\n\n"
-            logger.info(f"SSE event stream completed for conversation ID: {conv_id}")
-        except Exception as e:
-            logger.error(f"Error in SSE event stream for conversation ID {conv_id}: {e}", exc_info=True)
-            # Send a final error message to the client
-            error_response = AIStreamingResponse(
-                conversation_id=conv_id,
-                response_chunk=AIResponseChunkData(error_message=f"An unexpected error occurred: {str(e)[:100]}", is_final_text_chunk=True)
-            )
-            yield f"data: {error_response.model_dump_json(exclude_none=True)}\n\n"
-
-    return StreamingResponse(sse_event_stream(), media_type="text/event-stream")
-
 # To include this router in your main application (e.g., in app/main.py):
 # from app.routers.ai_assistant import ai_assistant_routes
 # app.include_router(ai_assistant_routes.router, prefix="/api/v1/ai-assistant", tags=["AI Assistant"])

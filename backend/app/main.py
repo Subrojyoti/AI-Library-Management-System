@@ -111,9 +111,9 @@ async def global_exception_handler(request: Request, exc: Exception):
 
 # Include routers with API_V1_STR prefix
 app.include_router(health_router, prefix=f"{settings.API_V1_STR}/health", tags=["Health Check"])
-app.include_router(books_router, prefix=f"{settings.API_V1_STR}/books", tags=["Books"]) # Use corrected alias
-app.include_router(students_router, prefix=f"{settings.API_V1_STR}/students", tags=["Students"]) # Use corrected alias
-app.include_router(issues_router, prefix=f"{settings.API_V1_STR}/issues", tags=["Book Issues"]) # Use corrected alias
+app.include_router(books_router, prefix=f"{settings.API_V1_STR}/books", tags=["Books"])
+app.include_router(students_router, prefix=f"{settings.API_V1_STR}/students", tags=["Students"])
+app.include_router(issues_router, prefix=f"{settings.API_V1_STR}/issues", tags=["Book Issues"])
 app.include_router(ai_assistant_router, prefix=f"{settings.API_V1_STR}/ai-assistant", tags=["AI Assistant"])
 app.include_router(stats_router, prefix=f"{settings.API_V1_STR}/stats", tags=["Statistics"])
 
@@ -128,10 +128,7 @@ async def options_handler(request: Request, full_path: str):
 async def read_api_v1_root():
     return {"message": f"Welcome to the {settings.PROJECT_NAME} API v1"}
 
-# A CORS test endpoint
-@app.get(f"{settings.API_V1_STR}/cors-test", tags=["Debug"], summary="Test CORS Headers")
-async def test_cors():
-    return {"cors_test": "If you can see this message, CORS is working!"}
+
 
 # A general root endpoint, not included in the main API schema for v1 if docs are specific to /api/v1
 @app.get("/", tags=["Root"], summary="Application Root Path", include_in_schema=False)
