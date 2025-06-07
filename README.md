@@ -84,7 +84,7 @@ Library-Management-System/
  │       │       __init__.py
  │       │
  │       ├───utils/
- │       │       email_utils.py
+ │               email_utils.py
  │
  ├───frontend/
        │    .env
@@ -130,10 +130,7 @@ Library-Management-System/
        │       StudentsPage.jsx
        │
        ├───services
-       │       apiClient.js
-       │
-       └───utils
-                .gitkeep
+               apiClient.js
 
 ```
 
@@ -160,6 +157,10 @@ Then, get the api and secret keys.
 - MAIL_FROM_NAME=Any Suitable Name
 - TEMPLATE_FOLDER=./app/email-templates
 
+```bash
+git clone https://github.com/Subrojyoti/AI-Library-Management-System.git
+cd AI-Library-Management-System
+```
 ### Backend Setup
 
 1. Navigate to the `backend/` directory: `cd backend`
@@ -187,7 +188,7 @@ Create two terminals
 
 Frontend will be available at http://localhost:5173 (or other port specified by vite)
 
-**API endpoints** will be available at http://localhost:8000/api/v1
+**API endpoints** will be available at http://localhost:8000/api/v1  
 **Swagger UI** will be available at http://localhost:8000/docs
 
 ### Sample API Usage (Example)
@@ -258,7 +259,7 @@ o	is_returned(bool)
 
 ## BONUS FEATURES
 
-### Overdue Tracking and Reminder System
+### Overdue Tracking and Reminder System (Bonus)
 The system includes a bonus feature to track overdue books and send email reminders to students.
 #### Design
 ![Overdue & Reminder System Design](https://ik.imagekit.io/diagrams/reminder_and_overdue_system.png?updatedAt=1749215451689 "Overdue & Reminder System Design")
@@ -277,7 +278,7 @@ The system includes a bonus feature to track overdue books and send email remind
     - The scheduled job processes these issues and triggers email sending.
 
 
-### Conversational AI Agent
+### Conversational AI Agent (Super Bonus)
 
 #### Design
 ![Conversation AI Agent Design](https://ik.imagekit.io/diagrams/ai_assisatant_design.png?updatedAt=1749206286019 "Conversation AI Agent Design")
@@ -291,7 +292,8 @@ The system includes a bonus feature to track overdue books and send email remind
 
 For the question, `How many new books are added this week ?`,
 according to my current system implementation, I would need to make another table.
-`Books Log` table, that keeps track of entry of books/copies into the library system. It should store fields book_id, isbn, copies_added, date_of_entry.
+`Books Log` table, that keeps track of entry of books/copies into the library system. It should store fields book_id, isbn, copies_added, date_of_entry. This table schema will be used as prompt for the AI agent to generate the response, rest of the logic will be same as others.
+
 ## DEPLOYMENT
 
 The Backend (Fast API) is deployed on Render.
