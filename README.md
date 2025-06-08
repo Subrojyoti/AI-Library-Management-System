@@ -70,7 +70,6 @@ Library-Management-System/
  │       │
  │       ├───schemas/
  │       │       ai_assistant.py
- │       │       ai_assistant_schemas.py
  │       │       book.py
  │       │       issue.py
  │       │       student.py
@@ -78,7 +77,6 @@ Library-Management-System/
  │       │
  │       ├───services/
  │       │       ai_assistant_service.py
- │       │       ai_service.py
  │       │       email_service.py
  │       │       library_analytics_service.py
  │       │       __init__.py
