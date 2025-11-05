@@ -26,7 +26,7 @@ if settings.GEMINI_API_KEY and settings.GEMINI_API_KEY != "YOUR_GEMINI_API_KEY_H
 else:
     logger.warning("GEMINI_API_KEY not found or is a placeholder. AI Assistant functionality will be limited.")
 
-MODEL_NAME = "gemini-1.5-flash"
+MODEL_NAME = "gemini-2.5-flash"
 
 # # Simple in-memory store for conversation histories
 # conversation_contexts: Dict[str, List[LLMContent]] = {}
@@ -98,7 +98,7 @@ For example:
 """
 
     try:
-        scope_response = model = genai.GenerativeModel('gemini-1.5-flash').generate_content(scope_check_prompt)
+        scope_response = model = genai.GenerativeModel('gemini-2.5-flash').generate_content(scope_check_prompt)
         scope_result = scope_response.text.strip()
         
         # Check if question is unanswerable
@@ -112,7 +112,7 @@ For example:
         logger.warning(f"Error during question scope check: {e}")
         # Continue even if scope check fails
     
-    model = genai.GenerativeModel('gemini-1.5-flash')
+    model = genai.GenerativeModel('gemini-2.5-flash')
 
     # 1. Generate SQL query with explicit instructions about table names
     prompt_sql = f"""
