@@ -3,6 +3,7 @@ from sqlalchemy.ext.asyncio import create_async_engine, AsyncSession
 from sqlalchemy.orm import sessionmaker
 from app.core.config import settings
 import asyncpg
+import asyncio
 
 # Import the db package to ensure all models are registered with Base.metadata
 # This replaces the previous commented-out direct model imports.
