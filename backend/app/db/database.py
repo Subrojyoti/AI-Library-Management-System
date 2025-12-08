@@ -33,18 +33,18 @@ AsyncSessionLocal = sessionmaker(
     expire_on_commit=False,
 )
 
-async def create_db_and_tables():
-    """
-    Creates all tables in the database.
-    This function is typically called at application startup.
-    All SQLAlchemy models are now registered by importing `app.db` above.
-    """
-    # Base should be imported at the module level. No need to import here again.
-    # from app.db.base_class import Base 
-    # from app.db import Base # This is already available in module scope
-    async with engine.begin() as conn:
-        # await conn.run_sync(Base.metadata.drop_all) # Use with caution: drops all data!
-        await conn.run_sync(Base.metadata.create_all)
+async def create_db_and_tables(retries: int = 5, delay: int = 5):
+    for attempt in range(1, retries + 1):
+        try:
+            async with engine.begin() as conn:
+                await conn.run_sync(Base.metadata.create_all)
+            print("Database tables created (if they didn't exist).")
+            return
+        except (asyncpg.exceptions.CannotConnectNowError, ConnectionRefusedError) as e:
+            print(f"DB not ready (attempt {attempt}/{retries}): {e}")
+            if attempt == retries:
+                raise
+            await asyncio.sleep(delay)
     print("Database tables created (if they didn't exist).")
 
 async def dispose_db_engine():
