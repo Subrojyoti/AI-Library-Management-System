@@ -1,7 +1,7 @@
 import os
 import logging
 from pydantic_settings import BaseSettings, SettingsConfigDict
-from pydantic import PostgresDsn, field_validator, Field
+from pydantic import PostgresDsn, field_validator, Field, AnyUrl
 from typing import Any
 from pathlib import Path
 import sys
@@ -39,7 +39,7 @@ class Settings(BaseSettings):
     POSTGRES_DB: str = Field(default="app")
     POSTGRES_SSL_MODE: str | None = Field(default=None)
     DB_ECHO: bool = Field(default=False)
-    DATABASE_URL: PostgresDsn | None = None
+    DATABASE_URL: AnyUrl | None = None
 
     # Email settings for reminders
     MAIL_USERNAME: str | None = Field(default=None)
@@ -66,6 +66,12 @@ class Settings(BaseSettings):
     @field_validator("DATABASE_URL", mode="before")
     def assemble_db_connection(cls, v: str | None, values: dict[str, Any]) -> Any:
         if isinstance(v, str):
+            # Convert postgres:// to postgresql+asyncpg:// for asyncpg compatibility
+            if v.startswith("postgres://"):
+                v = v.replace("postgres://", "postgresql+asyncpg://", 1)
+            # Convert sslmode to ssl parameter for asyncpg
+            if "sslmode=" in v:
+                v = v.replace("sslmode=", "ssl=")
             return v
         return PostgresDsn.build(
             scheme="postgresql+asyncpg",
